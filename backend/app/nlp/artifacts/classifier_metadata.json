@@ -1,0 +1,96 @@
+{
+  "model_architecture": "TF-IDF (1-2 ngrams) + Multinomial Naive Bayes",
+  "dataset_name": "notice_classification_dataset.json",
+  "dataset_type": "Synthetic Marathi School Notices (Prototype Dataset)",
+  "total_samples": 80,
+  "categories": [
+    "Examination",
+    "Meeting",
+    "Holiday",
+    "Academic",
+    "Event",
+    "Administrative",
+    "Emergency",
+    "General"
+  ],
+  "category_distribution": {
+    "Examination": 10,
+    "Meeting": 10,
+    "Holiday": 10,
+    "Academic": 10,
+    "Event": 10,
+    "Administrative": 10,
+    "Emergency": 10,
+    "General": 10
+  },
+  "train_samples": 60,
+  "test_samples": 20,
+  "holdout_test_accuracy": 0.5,
+  "holdout_test_f1_weighted": 0.4707,
+  "cross_val_accuracy_mean": 0.4125,
+  "cross_val_accuracy_std": 0.065,
+  "classification_report": {
+    "Examination": {
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "f1-score": 0.6666666666666666,
+      "support": 3.0
+    },
+    "Meeting": {
+      "precision": 0.4,
+      "recall": 1.0,
+      "f1-score": 0.5714285714285714,
+      "support": 2.0
+    },
+    "Holiday": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1-score": 0.8571428571428571,
+      "support": 3.0
+    },
+    "Academic": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 2.0
+    },
+    "Event": {
+      "precision": 1.0,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.5,
+      "support": 3.0
+    },
+    "Administrative": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 2.0
+    },
+    "Emergency": {
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.4,
+      "support": 3.0
+    },
+    "General": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1-score": 0.5,
+      "support": 2.0
+    },
+    "accuracy": 0.5,
+    "macro avg": {
+      "precision": 0.4770833333333333,
+      "recall": 0.47916666666666663,
+      "f1-score": 0.4369047619047619,
+      "support": 20.0
+    },
+    "weighted avg": {
+      "precision": 0.5275000000000001,
+      "recall": 0.5,
+      "f1-score": 0.47071428571428575,
+      "support": 20.0
+    }
+  },
+  "disclaimer": "Metrics are computed on a small synthetic prototype dataset for development. Accuracy will vary on real-world noisy school circulars."
+}

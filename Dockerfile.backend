@@ -1,0 +1,39 @@
+# ==============================================================================
+# Marathi Notice Hub - Backend Dockerfile
+# Academic Project: Marathi NLP-Based Intelligent Notice Management System
+# ==============================================================================
+FROM python:3.11-slim
+
+# Install system dependencies (build-essential, curl, libpq for PostgreSQL)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy dependency specifications
+COPY backend/requirements.txt /app/backend/requirements.txt
+
+# Install python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r /app/backend/requirements.txt && \
+    pip install --no-cache-dir psycopg2-binary==2.9.9
+
+# Copy backend codebase, alembic migrations, data, and scripts
+COPY backend/ /app/backend/
+COPY alembic.ini /app/alembic.ini
+COPY data/ /app/data/
+COPY scripts/ /app/scripts/
+
+# Set working directory to backend root
+WORKDIR /app
+
+ENV PYTHONPATH="/app/backend"
+ENV APP_ENV="production"
+
+EXPOSE 8000
+
+# Run alembic migrations and start uvicorn production server
+CMD ["sh", "-c", "python -m alembic upgrade head && python -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port 8000 --workers 4"]
